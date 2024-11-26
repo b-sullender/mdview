@@ -1,22 +1,31 @@
-# Makefile for installing md2html
+# Makefile for installing mdview
 
-INSTALL_DIR_ETC = /etc/md2html
+INSTALL_DIR_ETC = /etc/mdview
 INSTALL_DIR_NAUTILUS = /usr/share/nautilus-python/extensions
 
+# Variable for changing root installation directory (e.g., alternate root environments)
+DESTDIR =
+
 all:
-	@echo "Use 'make install' to install md2html."
+	@echo "Use 'sudo make install' to install mdview."
 
 install:
+	@if [ "$$(id -u)" -ne 0 ]; then echo "Please run as root 'sudo make install'"; exit 1; fi
 	@echo "Creating directories..."
-	mkdir -p $(INSTALL_DIR_ETC)
-	mkdir -p $(INSTALL_DIR_NAUTILUS)
-	@echo "Copying files..."
-	cp source/md2html.php $(INSTALL_DIR_ETC)/md2html.php
-	cp source/md2html.py $(INSTALL_DIR_NAUTILUS)/md2html.py
+	install -d $(DESTDIR)$(INSTALL_DIR_ETC)
+	install -d $(DESTDIR)$(INSTALL_DIR_NAUTILUS)
+	@echo "Installing files..."
+	install -m 755 source/md2html.php $(DESTDIR)$(INSTALL_DIR_ETC)/md2html.php
+	install -m 755 source/mdview.py $(DESTDIR)$(INSTALL_DIR_NAUTILUS)/mdview.py
+	install VERSION $(DESTDIR)$(INSTALL_DIR_ETC)/VERSION
+	install LICENSE $(DESTDIR)$(INSTALL_DIR_ETC)/LICENSE
 	@echo "Installation complete."
 
 uninstall:
+	@if [ "$$(id -u)" -ne 0 ]; then echo "Please run as root 'sudo make uninstall'"; exit 1; fi
 	@echo "Removing installed files..."
-	rm -rf $(INSTALL_DIR_ETC)/md2html.php
-	rm -rf $(INSTALL_DIR_NAUTILUS)/md2html.py
+	rm -rf $(DESTDIR)$(INSTALL_DIR_ETC)/md2html.php
+	rm -rf $(DESTDIR)$(INSTALL_DIR_NAUTILUS)/mdview.py
+	rm -rf $(DESTDIR)$(INSTALL_DIR_ETC)/VERSION
+	rm -rf $(DESTDIR)$(INSTALL_DIR_ETC)/LICENSE
 	@echo "Uninstall complete."

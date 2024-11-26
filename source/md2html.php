@@ -17,7 +17,7 @@ if (!file_exists($markdownFile)) {
 // Read Markdown file
 $markdownContent = file_get_contents($markdownFile);
 
-// Convert Markdown to HTML using an external library like Parsedown
+// Convert Markdown to HTML using external library Parsedown
 $parsedown = new Parsedown();
 $htmlContent = $parsedown->text($markdownContent);
 

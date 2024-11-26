@@ -3,9 +3,9 @@ import subprocess
 from gi.repository import Nautilus, GObject
 from typing import List
 
-class ViewTerminalExtension(GObject.GObject, Nautilus.MenuProvider):
+class ViewMarkdownExtension(GObject.GObject, Nautilus.MenuProvider):
     def _view_in_browser(self, file_path) -> None:
-        php_script = "/etc/md2html/md2html.php"
+        php_script = "/etc/mdview/md2html.php"
         subprocess.run(["php", php_script, file_path])
 
     def menu_activate_cb(

@@ -54,6 +54,12 @@ sudo make uninstall
 
 ---
 
+## ⚙️ **Temporary File Handling**
+
+When Markdown files are converted to HTML, they are saved as a temporary file in `/tmp`. As a result, refreshing the browser does not reflect any changes made to the Markdown file. To view updates, close the browser tab and reopen the Markdown file.
+
+---
+
 ### 📜 **License**  
 `mdview` is open-source software, licensed under the [MIT License](LICENSE). Contributions are welcome!  
 
