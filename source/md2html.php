@@ -8,18 +8,19 @@ if ($argc < 2) {
 }
 
 $markdownFile = $argv[1];
+$markdown = '';
 
 if (!file_exists($markdownFile)) {
-    echo "File not found: $markdownFile\n";
-    exit(1);
+    // Send error as HTML output
+    $markdown = "File not found: $markdownFile\n";
+} else {
+    // Read Markdown file
+    $markdownContent = file_get_contents($markdownFile);
+
+    // Convert Markdown to HTML using external library Parsedown
+    $parsedown = new Parsedown();
+    $markdown = $parsedown->text($markdownContent);
 }
-
-// Read Markdown file
-$markdownContent = file_get_contents($markdownFile);
-
-// Convert Markdown to HTML using external library Parsedown
-$parsedown = new Parsedown();
-$htmlContent = $parsedown->text($markdownContent);
 
 // Wrap in basic HTML structure
 $htmlContent = <<<HTML
@@ -47,7 +48,7 @@ $htmlContent = <<<HTML
 </style>
 </head>
 <body>
-$htmlContent
+$markdown
 </body>
 </html>
 HTML;

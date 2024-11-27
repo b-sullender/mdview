@@ -2,6 +2,8 @@ import os
 import subprocess
 from gi.repository import Nautilus, GObject
 from typing import List
+from pathlib import Path
+from urllib.parse import unquote, urlparse
 
 class ViewMarkdownExtension(GObject.GObject, Nautilus.MenuProvider):
     def _view_in_browser(self, file_path) -> None:
@@ -13,7 +15,8 @@ class ViewMarkdownExtension(GObject.GObject, Nautilus.MenuProvider):
         menu: Nautilus.MenuItem,
         file: Nautilus.FileInfo,
     ) -> None:
-        file_path = file.get_uri()
+        file_uri = file.get_uri()
+        file_path = unquote(urlparse(file_uri).path)
         self._view_in_browser(file_path)
 
     def get_file_items(
