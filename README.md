@@ -2,7 +2,9 @@
 Effortlessly view your Markdown files in your web browser directly from GNOME Nautilus on Linux.  
 
 ✨ **How it works:**  
-Right-click any `.md` file in Nautilus and select **"View in Browser"** to instantly open and render your Markdown content in your default browser.
+Right-click any `.md` file in Nautilus and select **"View in Browser"** to instantly open and render your Markdown content in your default browser.  
+
+⚡ **As simple as: Write → View → Print**  
 
 ---
 
