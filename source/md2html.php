@@ -31,9 +31,16 @@ $htmlContent = <<<HTML
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Markdown Preview</title>
   <link rel="stylesheet" type="text/css" href="file:///etc/mdview/style.css">
+  <link rel="stylesheet" type="text/css" href="file:///usr/share/javascript/highlight.js/styles/default.css">
+  <script src="file:///usr/share/javascript/highlight.js/highlight.js"></script>
 </head>
 <body>
 $markdown
+<script>
+  document.querySelectorAll('pre code').forEach((block) => {
+    hljs.highlightBlock(block);
+  });
+</script>
 </body>
 </html>
 HTML;

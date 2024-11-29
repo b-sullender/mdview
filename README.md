@@ -22,10 +22,11 @@ Ensure the following packages are installed:
 - **php**  
 - **python3-nautilus**  
 - **php-parsedown**  
+- **highlight.js**  
 
 Install them all at once with:  
 ```bash
-sudo apt install -y php python3-nautilus php-parsedown
+sudo apt install -y php python3-nautilus php-parsedown libjs-highlight.js
 ```
 
 ---
