@@ -32,13 +32,21 @@ $htmlContent = <<<HTML
   <title>Markdown Preview</title>
   <link rel="stylesheet" type="text/css" href="file:///etc/mdview/style.css">
   <link rel="stylesheet" type="text/css" href="file:///usr/share/javascript/highlight.js/styles/default.css">
-  <script src="file:///usr/share/javascript/highlight.js/highlight.js"></script>
+  <script type="text/javascript" src="file:///usr/share/javascript/highlight.js/highlight.js"></script>
+  <script type="text/javascript" src="file:///usr/share/javascript/mathjax/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 </head>
 <body>
 $markdown
 <script>
   document.querySelectorAll('pre code').forEach((block) => {
     hljs.highlightBlock(block);
+  });
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$', '$$'], ['\\[', '\\]']],
+      ignoreClass: "no-mathjax"
+    }
   });
 </script>
 </body>
