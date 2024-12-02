@@ -22,12 +22,13 @@ Ensure the following packages are installed:
 - **php**  
 - **python3-nautilus**  
 - **php-parsedown**  
+- **php-parsedown-extra**  
 - **highlight.js**  
 - **mathjax**  
 
 Install them all at once with:  
 ```bash
-sudo apt install -y php python3-nautilus php-parsedown libjs-highlight.js libjs-mathjax
+sudo apt install -y php python3-nautilus php-parsedown php-parsedown-extra libjs-highlight.js libjs-mathjax
 ```
 
 ---

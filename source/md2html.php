@@ -1,6 +1,7 @@
 <?php
 
 require '/usr/share/php/Parsedown/Parsedown.php';
+require '/usr/share/php/ParsedownExtra/ParsedownExtra.php';
 
 if ($argc < 2) {
     echo "Usage: md2html.php <markdown_file>\n";
@@ -15,11 +16,11 @@ if (!file_exists($markdownFile)) {
     $markdown = "File not found: $markdownFile\n";
 } else {
     // Read Markdown file
-    $markdownContent = file_get_contents($markdownFile);
+    $markdown = file_get_contents($markdownFile);
 
-    // Convert Markdown to HTML using external library Parsedown
-    $parsedown = new Parsedown();
-    $markdown = $parsedown->text($markdownContent);
+    // Convert Markdown to HTML
+    $Extra = new ParsedownExtra();
+    $markdown = $Extra->text($markdown);
 }
 
 // Wrap in basic HTML structure
@@ -38,15 +39,16 @@ $htmlContent = <<<HTML
 <body>
 $markdown
 <script>
-  document.querySelectorAll('pre code').forEach((block) => {
-    hljs.highlightBlock(block);
-  });
   MathJax.Hub.Config({
     tex2jax: {
-      inlineMath: [['$', '$'], ['\\(', '\\)']],
-      displayMath: [['$$', '$$'], ['\\[', '\\]']],
+      inlineMath: [['$', '$'], ['$`', '`$']],
+      displayMath: [['$$', '$$']],
+      processEscapes: true,
       ignoreClass: "no-mathjax"
     }
+  });
+  document.querySelectorAll('pre code').forEach((block) => {
+    hljs.highlightBlock(block);
   });
 </script>
 </body>
