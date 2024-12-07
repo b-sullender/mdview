@@ -8,7 +8,7 @@ from urllib.parse import unquote, urlparse
 class ViewMarkdownExtension(GObject.GObject, Nautilus.MenuProvider):
     def _view_in_browser(self, file_path) -> None:
         php_script = "/etc/mdview/md2html.php"
-        subprocess.run(["php", php_script, file_path])
+        subprocess.Popen(["php", php_script, file_path])
 
     def menu_activate_cb(
         self,
